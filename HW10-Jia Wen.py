@@ -208,7 +208,7 @@ def main():
     result.instructors_summary()
     DB_file = '/Users/apple/Desktop/Code/810/810_star_up.db'
     db = sqlite3.connect(DB_file)
-    table = PrettyTable(['CWID','Name','Dept','Number','Teaching'])
+    table = PrettyTable(['CWID','Name','Dept','Teaching Course','Number of Students'])
     query = """select HW11_instructors.CWID,HW11_instructors.Name,HW11_instructors.Dept,HW11_grades.Course,count(HW11_grades.Student_CWID) as students
             from HW11_instructors left join HW11_grades on HW11_instructors.CWID = HW11_grades.Instructor_CWID
             group by HW11_instructors.CWID,HW11_instructors.Name,HW11_instructors.Dept,HW11_grades.Course
