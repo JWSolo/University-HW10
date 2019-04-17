@@ -7,6 +7,7 @@ Description: Repository
 from HW08JiaWen import file_reader
 from prettytable import PrettyTable
 from collections import defaultdict
+import sqlite3
 import unittest
 import os
 
@@ -205,6 +206,12 @@ def main():
     result.majors_summary()
     result.students_summary()
     result.instructors_summary()
+    DB_file = '/Users/apple/Desktop/Code/810/810_star_up.db'
+    db = sqlite3.connect(DB_file)   
+    table = PrettyTable(['CWID','Name','Dept','Number','Teaching'])
+    for file in db.execute('select * from HW11_instructors'):
+        table.add_row(file)
+    print(table)
 
 class AssignmentTest(unittest.TestCase):
     def test_student_summary(self):
